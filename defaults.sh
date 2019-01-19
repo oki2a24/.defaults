@@ -27,7 +27,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write com.apple.finder ShowPathbar -bool true
 
 ########## セキュリティとプライバシー
-# ファイアーウォールを入りにする
+# ファイアーウォールをオンにする
 sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 ########## 日付と時刻
