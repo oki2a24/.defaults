@@ -10,6 +10,16 @@
 
 set -eux
 
+########## Dock
+# すべての（デフォルトの）アプリアイコンをDockから消去する
+defaults write com.apple.dock persistent-apps -array
+# Dockを自動的に表示/非表示
+defaults write com.apple.dock autohide -bool true
+# 表示開始までの遅延をゼロに設定
+defaults write com.apple.dock autohide-delay -float 0
+# Dock表示完了までの時間をゼロに設定
+defaults write com.apple.dock autohide-time-modifier -float 0
+
 ########## FINDER
 # show litsview as default
 defaults write com.apple.Finder FXPreferredViewStyle -string "Nlsv"
@@ -59,6 +69,8 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 ########## 反映
+# Dock
+killall Dock
 # Finder
 killall Finder
 # メニューバー
