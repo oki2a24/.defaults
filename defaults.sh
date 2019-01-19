@@ -49,8 +49,19 @@ defaults write com.apple.menuextra.clock IsAnalog -bool false
 # 割合 (%) を表示
 defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
+########## キーボード
+# 英字入力中にスペルを自動変換しない
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+
+# スマート引用符とスマートダッシュを使用
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
 ########## 反映
 # Finder
 killall Finder
 # メニューバー
 killall SystemUIServer
+# システム環境設定
+killall System\ Preferences
