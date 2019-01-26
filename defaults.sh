@@ -77,6 +77,18 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 
 
+########## ソフトウェアアップデート
+# 自動更新チェックを有効にする
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+# 毎日アプリケーションのアップデートを確認する
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# アプリケーションのアップデートをバックグラウンドでダウンロードする
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+# システムデータファイルとセキュリティ更新プログラムをインストールする
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+# アプリケーションの自動更新を有効化
+defaults write com.apple.commerce AutoUpdate -bool true
+
 ########## 反映
 # Dock
 killall Dock
