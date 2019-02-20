@@ -10,6 +10,8 @@
 
 set -eux
 
+readonly SCRIPT_DIR=$(cd $(dirname $0); pwd)
+
 ########## Dock
 # すべての（デフォルトの）アプリアイコンをDockから消去する
 defaults write com.apple.dock persistent-apps -array
@@ -88,6 +90,23 @@ defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
 defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 # アプリケーションの自動更新を有効化
 defaults write com.apple.commerce AutoUpdate -bool true
+
+
+
+########## ターミナル
+# カスタムテーマを使う、そのテーマをデフォルトに設定する
+# https://github.com/djmonta/dotfiles/blob/8e9f972863000b0ef909931dd2d2bd18d45259d3/etc/init/osx/50-osx_settings.sh#L135-L145
+readonly TERM_PROFILE='Iceberg';
+readonly TERM_PATH='/terminal.app_colors/';
+readonly CURRENT_PROFILE="$(defaults read com.apple.terminal 'Default Window Settings')";
+if [[ "${CURRENT_PROFILE}" != "${TERM_PROFILE}" ]]; then
+  open "${SCRIPT_DIR}${TERM_PATH}${TERM_PROFILE}.terminal"
+  defaults write com.apple.Terminal "Default Window Settings" -string "${TERM_PROFILE}"
+  defaults write com.apple.Terminal "Startup Window Settings" -string "${TERM_PROFILE}"
+fi
+defaults import com.apple.Terminal "$HOME/Library/Preferences/com.apple.Terminal.plist"
+
+
 
 ########## 反映
 # Dock
